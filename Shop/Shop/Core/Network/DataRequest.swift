@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 
+/// - Tag: Протокол для создания запросов. Представляет методы для создания взаимосвязанных объектов, не указывая, каких конкретно классов они будут.
 protocol AbstractRequestFactory {
     var errorParser: AbstractErrorParser { get }
     var sessionManager: Session { get }
@@ -20,6 +21,7 @@ protocol AbstractRequestFactory {
     -> DataRequest
 }
 
+/// - Tag: Дополнительная ручная обработка ошибок при помощи AbstractErrorParser.
 class CustomDecodableSerializer<T: Decodable>: DataResponseSerializerProtocol {
     private let errorParser: AbstractErrorParser
     
@@ -42,6 +44,7 @@ class CustomDecodableSerializer<T: Decodable>: DataResponseSerializerProtocol {
     }
 }
 
+/// - Tag: Расширение стандартного класса DataRequest от фреймворка Alamofire при помощи кастомного CustomDecodableSerializer.
 extension DataRequest {
     @discardableResult
     func responseCodable<T: Decodable>(

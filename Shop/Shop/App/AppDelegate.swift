@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case .success(let register):
                 print(register.userMessage)
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error)
             }
         }
         let auth = requestFactory.makeAuthRequestFatory()
@@ -29,7 +29,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case .success(let login):
                 print(login.user)
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error)
+            }
+        }
+        auth.logout(userID: 123) { response in
+            switch response.result {
+            case .success(let logout):
+                print(logout)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        let catalogData = requestFactory.makeCatalogDataRequestFactory()
+        catalogData.getCatalogData(pageNumber: 1, categotyID: 1) { response in
+            switch response.result {
+            case .success(let catalogData):
+                print(catalogData)
+            case .failure(let error):
+                print(error)
             }
         }
         let changeData = requestFactory.makeChangeUserDataRequestFactory()
@@ -38,17 +55,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case .success(let changeData):
                 print(changeData)
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error)
             }
         }
-        auth.logout(userID: 123) { response in
+        let productData = requestFactory.makeProductDataRequestFactory()
+        productData.getProductData(productID: 123) { response in
             switch response.result {
-            case .success(let logout):
-                print(logout)
+            case .success(let productData):
+                print(productData)
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error)
             }
         }
+        
         return true
     }
 

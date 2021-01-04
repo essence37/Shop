@@ -12,6 +12,7 @@ enum RequestRouterEncoding {
     case url, json
 }
 
+/// - Tag: Протокол непосредственно реализует запрос к серверу.
 protocol RequestRouter: URLRequestConvertible {
     var baseUrl: URL { get }
     var method: HTTPMethod { get }

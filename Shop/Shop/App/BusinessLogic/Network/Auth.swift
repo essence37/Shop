@@ -8,11 +8,12 @@
 import Foundation
 import Alamofire
 
+/// - Tag: Класс реализует протокол AuthRequestFactory и занимается непосредственно обработкой запроса "Войти" и "Выйти".
 class Auth: AbstractRequestFactory {
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = URL(string: "https://mighty-sea-74278.herokuapp.com/")!
     
     init(
         errorParser: AbstractErrorParser,
@@ -38,8 +39,8 @@ extension Auth: AuthRequestFactory {
 extension Auth {
     struct Login: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .get
-        let path: String = "login.json"
+        let method: HTTPMethod = .post
+        let path: String = "login"
         
         let login: String
         let password: String
@@ -52,8 +53,8 @@ extension Auth {
     }
     struct Logout: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .get
-        let path: String = "logout.json"
+        let method: HTTPMethod = .post
+        let path: String = "logout"
         
         let userID: Int
         var parameters: Parameters? {

@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import Alamofire
+
+protocol CatalogDataRequestFactory {
+    func getCatalogData(pageNumber: Int, categotyID: Int, completionHandler: @escaping (AFDataResponse<GetCatalogDataResult>) -> Void)
+}
