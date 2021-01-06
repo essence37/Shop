@@ -46,12 +46,12 @@ extension ChangeUserData {
         let bio: String
         var parameters: Parameters? {
             return [
-                "id_user" : userID,
-                "username" : login,
-                "password" : password,
+                "id_user": userID,
+                "username": login,
+                "password": password,
                 "email" : email,
                 "gender": gender,
-                "credit_card" : creditCard,
+                "credit_card": creditCard,
                 "bio" : bio
             ]
         }

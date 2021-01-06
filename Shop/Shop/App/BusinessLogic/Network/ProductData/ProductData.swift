@@ -39,9 +39,7 @@ extension ProductData {
         
         let productID: Int
         var parameters: Parameters? {
-            return [
-                "id_product" : productID
-            ]
+            return ["id_product" : productID]
         }
     }
 }
