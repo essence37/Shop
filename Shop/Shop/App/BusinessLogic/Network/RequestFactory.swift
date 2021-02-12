@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 
+/// - Tag: Класс отвечает за создание экземпляров классов, которые непосредственно занимаются обработкой запросов.
 class RequestFactory {
     
     func makeErrorParser() -> AbstractErrorParser {
@@ -47,5 +48,15 @@ class RequestFactory {
     func makeCatalogDataRequestFactory() -> CatalogDataRequestFactory {
         let errorParser = makeErrorParser()
         return CatalogData(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    
+    func makeReviewsDataRequestFactory() -> ReviewsDataRequestFactory {
+        let errorParser = makeErrorParser()
+        return ReviewsData(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
+    }
+    
+    func makeBasketDataRequestFactory() -> BasketDataRequestFactory {
+        let errorParser = makeErrorParser()
+        return BasketData(errorParser: errorParser, sessionManager: commonSession, queue: sessionQueue)
     }
 }

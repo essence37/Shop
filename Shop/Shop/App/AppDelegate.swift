@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,60 +14,113 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let requestFactory = RequestFactory()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        FirebaseApp.configure()
+        
         // Override point for customization after application launch.
-        let signUp = requestFactory.makeSignUpRequestFactory()
-        signUp.register(userID: 123, userName: "Somebody", password: "mypassword", email: "some@some.ru", gender: "m", creditCard: "9872389-2424-234224-234", bio: "This is good! I think I will switch to another language") { response in
-            switch response.result {
-            case .success(let register):
-                print(register.userMessage)
-            case .failure(let error):
-                print(error)
-            }
-        }
-        let auth = requestFactory.makeAuthRequestFatory()
-        auth.login(userName: "Somebody", password: "mypassword") { response in
-            switch response.result {
-            case .success(let login):
-                print(login.user)
-            case .failure(let error):
-                print(error)
-            }
-        }
-        auth.logout(userID: 123) { response in
-            switch response.result {
-            case .success(let logout):
-                print(logout)
-            case .failure(let error):
-                print(error)
-            }
-        }
-        let catalogData = requestFactory.makeCatalogDataRequestFactory()
-        catalogData.getCatalogData(pageNumber: 1, categotyID: 1) { response in
-            switch response.result {
-            case .success(let catalogData):
-                print(catalogData)
-            case .failure(let error):
-                print(error)
-            }
-        }
-        let changeData = requestFactory.makeChangeUserDataRequestFactory()
-        changeData.changeData(userID: 123, userName: "Somebody", password: "mypassword", email: "some@some.ru", gender: "m", creditCard: "9872389-2424-234224-234", bio: "This is good! I think I will switch to another language") { response in
-            switch response.result {
-            case .success(let changeData):
-                print(changeData)
-            case .failure(let error):
-                print(error)
-            }
-        }
-        let productData = requestFactory.makeProductDataRequestFactory()
-        productData.getProductData(productID: 123) { response in
-            switch response.result {
-            case .success(let productData):
-                print(productData)
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        let signUp = requestFactory.makeSignUpRequestFactory()
+//        signUp.register(userID: 123, userName: "Somebody", password: "mypassword", email: "some@some.ru", gender: "m", creditCard: "9872389-2424-234224-234", bio: "This is good! I think I will switch to another language") { response in
+//            switch response.result {
+//            case .success(let register):
+//                print(register.userMessage)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        let auth = requestFactory.makeAuthRequestFatory()
+//        auth.login(userName: "Somebody", password: "mypassword") { response in
+//            switch response.result {
+//            case .success(let login):
+//                print(login.user)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        auth.logout(userID: 123) { response in
+//            switch response.result {
+//            case .success(let logout):
+//                print(logout)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        let catalogData = requestFactory.makeCatalogDataRequestFactory()
+//        catalogData.getCatalogData(pageNumber: 1, categotyID: 1) { response in
+//            switch response.result {
+//            case .success(let catalogData):
+//                print(catalogData)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        let changeData = requestFactory.makeChangeUserDataRequestFactory()
+//        changeData.changeData(userID: 123, userName: "Somebody", password: "mypassword", email: "some@some.ru", gender: "m", creditCard: "9872389-2424-234224-234", bio: "This is good! I think I will switch to another language") { response in
+//            switch response.result {
+//            case .success(let changeData):
+//                print(changeData)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        let productData = requestFactory.makeProductDataRequestFactory()
+//        productData.getProductData(productID: 123) { response in
+//            switch response.result {
+//            case .success(let productData):
+//                print(productData)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        let reviewsData = requestFactory.makeReviewsDataRequestFactory()
+//        reviewsData.addReview(userID: 123, text: "Хороший товар") { response in
+//            switch response.result {
+//            case .success(let review):
+//                print(review)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        reviewsData.deleteReview(commentID: 123) { response in
+//            switch response.result {
+//            case .success(let review):
+//                print(review)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        reviewsData.getAllProductReviews(page: 1, productID: 123) { response in
+//            switch response.result {
+//            case .success(let reviewsData):
+//                print(reviewsData)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        let basketData = requestFactory.makeBasketDataRequestFactory()
+//        basketData.addToBasket(productID: 123, quantity: 1) { response in
+//            switch response.result {
+//            case .success(let basket):
+//                print(basket)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        basketData.deleteFromBasket(productID: 123) { response in
+//            switch response.result {
+//            case .success(let basket):
+//                print(basket)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        basketData.payBasket(basketID: 123) { response in
+//            switch response.result {
+//            case .success(let basket):
+//                print(basket)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
         
         return true
     }

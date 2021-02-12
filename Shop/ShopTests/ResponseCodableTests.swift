@@ -184,6 +184,117 @@ class ResponseCodableTests: XCTestCase {
         wait(for: [expectation], timeout: 10.0)
     }
     
+    func testAddReviewRequestShouldDownloadAndParse() {
+        var parameters: Parameters? {
+            return [
+                "id_user": 123,
+                "text": "Хороший товар"
+            ]
+        }
+        AF
+            .request("https://mighty-sea-74278.herokuapp.com/addReview", method: .post, parameters: parameters)
+            .responseCodable(errorParser: errorParser) { [weak self] (response: DataResponse<AddReviewResult, AFError>) in
+                switch response.result {
+                case .success(_): break
+                case .failure:
+                    XCTFail()
+                }
+                self?.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testDeleteReviewRequestShouldDownloadAndParse() {
+        var parameters: Parameters? {
+            return ["id_comment": 123]
+        }
+        AF
+            .request("https://mighty-sea-74278.herokuapp.com/deleteReview", method: .post, parameters: parameters)
+            .responseCodable(errorParser: errorParser) { [weak self] (response: DataResponse<DeleteReviewResult, AFError>) in
+                switch response.result {
+                case .success(_): break
+                case .failure:
+                    XCTFail()
+                }
+                self?.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+    }
+
+    func testAllProductReviewsDataRequestShouldDownloadAndParse() {
+        var parameters: Parameters? {
+            return [
+                "page_number": 1,
+                "id_product": 123
+            ]
+        }
+        AF
+            .request("https://mighty-sea-74278.herokuapp.com/getAllProductReviews", method: .post, parameters: parameters)
+            .responseCodable(errorParser: errorParser) { [weak self] (response: DataResponse<GetAllProductReviewsResult, AFError>) in
+                switch response.result {
+                case .success(_): break
+                case .failure:
+                    XCTFail()
+                }
+                self?.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    // MARK: - Тесты, связанные с корзиной.
+    func testAddToBasketRequestShouldDownloadAndParse() {
+        var parameters: Parameters? {
+            return [
+                "id_product": 123,
+                "quantity": 1
+            ]
+        }
+        AF
+            .request("https://mighty-sea-74278.herokuapp.com/addToBasket", method: .post, parameters: parameters)
+            .responseCodable(errorParser: errorParser) { [weak self] (response: DataResponse<AddToBasketResult, AFError>) in
+                switch response.result {
+                case .success(_): break
+                case .failure:
+                    XCTFail()
+                }
+                self?.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testDeleteFromBasketRequestShouldDownloadAndParse() {
+        var parameters: Parameters? {
+            return ["id_product": 123]
+        }
+        AF
+            .request("https://mighty-sea-74278.herokuapp.com/deleteFromBasket", method: .post, parameters: parameters)
+            .responseCodable(errorParser: errorParser) { [weak self] (response: DataResponse<DeleteFromBasketResult, AFError>) in
+                switch response.result {
+                case .success(_): break
+                case .failure:
+                    XCTFail()
+                }
+                self?.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testPayBasketRequestShouldDownloadAndParse() {
+        var parameters: Parameters? {
+            return ["id_basket": 123]
+        }
+        AF
+            .request("https://mighty-sea-74278.herokuapp.com/payBasket", method: .post, parameters: parameters)
+            .responseCodable(errorParser: errorParser) { [weak self] (response: DataResponse<PayBasketResult, AFError>) in
+                switch response.result {
+                case .success(_): break
+                case .failure:
+                    XCTFail()
+                }
+                self?.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+    }
 
     func testExample() throws {
         // This is an example of a functional test case.

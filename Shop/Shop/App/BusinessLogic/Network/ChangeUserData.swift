@@ -10,18 +10,18 @@ import Alamofire
 
 class ChangeUserData: AbstractRequestFactory {
     let errorParser: AbstractErrorParser
-        let sessionManager: Session
-        let queue: DispatchQueue
-        let baseUrl = URL(string: "https://mighty-sea-74278.herokuapp.com/")!
-        
-        init(
-            errorParser: AbstractErrorParser,
-            sessionManager: Session,
-            queue: DispatchQueue = DispatchQueue.global(qos: .utility)) {
-            self.errorParser = errorParser
-            self.sessionManager = sessionManager
-            self.queue = queue
-        }
+    let sessionManager: Session
+    let queue: DispatchQueue
+    let baseUrl = URL(string: "https://mighty-sea-74278.herokuapp.com/")!
+    
+    init(
+        errorParser: AbstractErrorParser,
+        sessionManager: Session,
+        queue: DispatchQueue = DispatchQueue.global(qos: .utility)) {
+        self.errorParser = errorParser
+        self.sessionManager = sessionManager
+        self.queue = queue
+    }
 }
 
 extension ChangeUserData: ChangeUserDataRequestFactory {
@@ -33,9 +33,9 @@ extension ChangeUserData: ChangeUserDataRequestFactory {
 
 extension ChangeUserData {
     struct ChangeData: RequestRouter {
-        var baseUrl: URL
-        var method: HTTPMethod = .post
-        var path: String = "changeUserData"
+        let baseUrl: URL
+        let method: HTTPMethod = .post
+        let path: String = "changeUserData"
         
         let userID: Int
         let login: String

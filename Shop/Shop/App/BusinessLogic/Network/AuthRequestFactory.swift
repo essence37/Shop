@@ -10,6 +10,6 @@ import Alamofire
 
 /// - Tag: Реализация входа и выхода из личного кабинета.
 protocol AuthRequestFactory {
-    func login(userName: String, password: String, completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void)
+    func login(username: String, password: String, completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void)
     func logout(userID: Int, completionHandler: @escaping (AFDataResponse<LogoutResult>) -> Void)
 }
